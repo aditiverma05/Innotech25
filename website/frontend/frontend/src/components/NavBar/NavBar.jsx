@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { House, User, Clock, ScrollText } from "lucide-react";
+import { motion } from "framer-motion";
 
 const NavBar = () => {
   const [active, setActive] = useState("Home");
@@ -12,13 +13,18 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="flex h-[12vh] border-t bottom-0 sticky bg-white z-50">
+    <motion.div
+      initial={{ y: 100 }}  
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+
+    className="flex h-[12vh] border-t bottom-0 sticky bg-white z-50">
       <div className="flex justify-center items-center w-full text-green-600 font-semibold">
         {tabs.map((tab) => (
           <div
             key={tab.name}
             onClick={() => setActive(tab.name)}
-            className={`flex flex-col justify-center items-center rounded-xl p-3 m-3 w-[80px] cursor-pointer transition-all duration-200 ${
+            className={`flex flex-col justify-center items-center rounded-xl p-3 m-3 w-20 cursor-pointer transition-all duration-200 ${
               active === tab.name
                 ? "bg-green-600 text-white scale-105"
                 : "hover:bg-green-100"
@@ -29,7 +35,7 @@ const NavBar = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
